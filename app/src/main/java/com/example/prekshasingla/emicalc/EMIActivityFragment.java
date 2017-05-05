@@ -46,23 +46,35 @@ public class EMIActivityFragment extends Fragment {
             public void onClick(View view) {
 
                 ArrayList<EMI> emiList=new ArrayList<EMI>();
-                Integer p=Integer.parseInt(amount.getText().toString());
+                float p=Integer.parseInt(amount.getText().toString());
                 Integer t=Integer.parseInt(tenure.getText().toString());
                 Integer t1=t-3;
-                Integer r=36/12;
+                float r=36/(12*100);
                 if(t1<=0) {
                     t1 = 1;
                 }
                 for (int i = t1; i <=t + 3; i++) {
 
-                    Float e = (float) (p * r * (1 + r) ^ i) / ((1 + r) ^ i - 1);
-                    float amount=e*i;
-                    EMI emi = new EMI(amount, i, e);
-                    Toast.makeText(getContext(), ""+e, Toast.LENGTH_SHORT).show();
+                   float interestYear= 36*p/100;
+                    float interestMonth= interestYear/12;
+                    float amount=(interestMonth*i)+p;
+                    //Float e = (float) p*(r * (float)Math.pow((1 + r), i )/ ((float)Math.pow((1 + r), i ) - 1));
+                    //float amount=e*i;
+                    EMI emi = new EMI(amount, i, amount/i);
+                    //Toast.makeText(getContext(), ""+e, Toast.LENGTH_SHORT).show();
                     emiList.add(emi);
                 }
 
+                View header = getActivity().getLayoutInflater().inflate(R.layout.header_list, list, false);
                 ListAdapter adapter=new ListAdapter(getContext(),emiList);
+
+                list.setAdapter(adapter);
+                list.setHeaderDividersEnabled(true);
+                if(list.getHeaderViewsCount()==0)
+                    list.addHeaderView(header, null, false);
+
+
+                //ListAdapter adapter=new ListAdapter(getContext(),emiList);
                 list.setAdapter(adapter);
             }
         });
