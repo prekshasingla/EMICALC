@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EMICALC</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="partnerKey">E07v869787ed0f6f94d39965f9464d5c5848d</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_startup">StartupActivity</string>
+
+</resources>
