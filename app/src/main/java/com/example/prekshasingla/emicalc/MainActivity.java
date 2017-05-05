@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.truecaller.android.sdk.ITrueCallback;
 import com.truecaller.android.sdk.TrueButton;
@@ -34,18 +35,7 @@ public class MainActivity extends AppCompatActivity implements ITrueCallback {
 
         ((TrueButton) findViewById(R.id.com_truecaller_android_sdk_truebutton)).setTrueClient(mTrueClient);
 
-        //Intent cameraIntent = new Intent();
-        //startActivityForResult(cameraIntent, 0);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -89,15 +79,13 @@ public class MainActivity extends AppCompatActivity implements ITrueCallback {
         Intent i = new Intent(this, EMIActivity.class);
         i.putExtra("Phone",trueProfile.phoneNumber.toString());
         startActivity(i);
-        // close this activity
+
         this.finish();
-
-
-
     }
 
     @Override
     public void onFailureProfileShared(@NonNull TrueError trueError) {
 
+        Toast.makeText(MainActivity.this, "Please login using Truecaller first", Toast.LENGTH_SHORT).show();
     }
 }
