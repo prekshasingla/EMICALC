@@ -82,7 +82,17 @@ public class MainActivity extends AppCompatActivity implements ITrueCallback {
     @Override
     public void onSuccesProfileShared(@NonNull TrueProfile trueProfile) {
 
+
+        Log.e("Phone",trueProfile.phoneNumber.toString());
         Log.e("Profile","done");
+
+        Intent i = new Intent(this, EMIActivity.class);
+        i.putExtra("Phone",trueProfile.phoneNumber.toString());
+        startActivity(i);
+        // close this activity
+        this.finish();
+
+
 
     }
 

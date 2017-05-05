@@ -22,10 +22,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <com.truecaller.android.sdk.TrueButton
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
